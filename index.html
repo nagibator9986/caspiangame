@@ -470,7 +470,7 @@ const G={
     this.score=0;this.hp=100;this.wave=1;this.combo=1;this.maxCombo=1;
     this.correct=0;this.wrong=0;
     this.orbs=[];this.particles=[];this.floats=[];
-    this.spawnT=0;this.spawnI=110;this.waveN=0;this.waveMax=6;this.waveDelay=140;
+    this.spawnT=0;this.spawnI=40;this.waveN=0;this.waveMax=6;this.waveDelay=60;
     this.frozen=false;this.freezeT=0;this.shielded=false;this.shieldT=0;this.time=0;
     this.usedQ.clear();
     waveBanner(1,'Приготовьтесь!');
@@ -647,7 +647,7 @@ const G={
     else{x=-margin;y=rnd(margin,H-margin)}
 
     const w=this.wave;
-    const baseSpd=rnd(0.8, 1.2)+w*.15;
+    const baseSpd = rnd(2.5, 4.0) + w * 0.5;
     const col=COLORS[Math.floor(rnd(0,COLORS.length))];
     const icon=ICONS[Math.floor(rnd(0,ICONS.length))];
     let hp=1,dmg=8,r=22,pts=40;
@@ -655,14 +655,14 @@ const G={
     if(w>=6&&Math.random()<.2){hp=3;dmg=18;r=34;pts=90}
     if(w>=9&&Math.random()<.15){hp=4+Math.floor(w/5);dmg=22;r=38;pts=120}
 
-    this.orbs.push({x,y,r,speed:Math.min(baseSpd,5.0),hp,maxHp:hp,dmg,pts,color:col,icon,pulse:rnd(0,6),rot:rnd(0,6),darkColor:col});
+    this.orbs.push({x,y,r,speed:Math.min(baseSpd,12.0),hp,maxHp:hp,dmg,pts,color:col,icon,pulse:rnd(0,6),rot:rnd(0,6),darkColor:col});
   },
 
   nextWave(){
     this.wave++;this.waveN=0;
     this.waveMax=Math.min(6+this.wave*2,30);
-    this.spawnI=Math.max(30,110-this.wave*6);
-    this.waveDelay=150;
+    this.spawnI = Math.max(10, 40 - this.wave * 5);
+    this.waveDelay=60;
     const subs=['Готовьтесь!','Сложнее!','Не сдавайтесь!','Быстрее!','Вы сильны!','Мозги кипят!','Невероятно!','Легенда!'];
     waveBanner(this.wave,subs[Math.min(this.wave-2,subs.length-1)]||'💪');
     this.hp=Math.min(100,this.hp+3);this.hud();
