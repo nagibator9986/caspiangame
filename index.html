@@ -655,7 +655,7 @@ const G={
     if(w>=6&&Math.random()<.2){hp=3;dmg=18;r=34;pts=90}
     if(w>=9&&Math.random()<.15){hp=4+Math.floor(w/5);dmg=22;r=38;pts=120}
 
-    this.orbs.push({x,y,r,speed:Math.min(baseSpd,2.5),hp,maxHp:hp,dmg,pts,color:col,icon,pulse:rnd(0,6),rot:rnd(0,6),darkColor:col});
+    this.orbs.push({x,y,r,speed:Math.min(baseSpd,5.0),hp,maxHp:hp,dmg,pts,color:col,icon,pulse:rnd(0,6),rot:rnd(0,6),darkColor:col});
   },
 
   nextWave(){
